@@ -14,5 +14,16 @@ upstream accepts its fixes. Upstream is
   groups, so `unevaluatedProperties` never ran. Both keywords now report
   only the properties no keyword applies to (`tests/CollectAllErrorsTest.php`).
 
-Releases are tagged `v<upstream version>-p<n>` (for example `v2.6.0-p1`),
-which Composer reads as a stable patch release of the upstream version.
+## How it is consumed
+
+The package is named `min-0-max/json-schema` and keeps the namespace
+`Opis\JsonSchema`. A root declares the repository and requires a branch:
+
+```json
+"repositories": [{"type": "vcs", "url": "https://github.com/min-0-max/json-schema", "no-api": true}],
+"require": {"min-0-max/json-schema": "dev-master"}
+```
+
+A library requires `"min-0-max/json-schema": "*"` in place of
+`opis/json-schema`. The tag `v2.6.0-p1` predates the rename and keeps
+the name `opis/json-schema`.

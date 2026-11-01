@@ -1,5 +1,5 @@
 {
-    "name": "opis/json-schema",
+    "name": "min-0-max/json-schema",
     "description": "Json Schema Validator for PHP",
     "keywords": [
         "json",
