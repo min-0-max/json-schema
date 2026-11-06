@@ -17,19 +17,26 @@ upstream accepts its fixes. Upstream is
 ## How it is consumed
 
 The package is named `min-0-max/json-schema` and keeps the namespace
-`Opis\JsonSchema`. A root declares the repository and requires a branch:
+`Opis\JsonSchema`. A root declares the repository and requires a release
+tag of the line:
 
 ```json
 "repositories": [{"type": "vcs", "url": "https://github.com/min-0-max/json-schema", "no-api": true}],
-"require": {"min-0-max/json-schema": "dev-polyspec-origin-2.6.0"}
+"require": {"min-0-max/json-schema": "2.6.0-p2"}
 ```
 
 A library requires `"min-0-max/json-schema": "*"` in place of
 `opis/json-schema`. The tag `v2.6.0-p1` predates the rename and keeps
 the name `opis/json-schema`.
 
-The branch `polyspec-origin-2.6.0` is the default branch and carries the
-upstream version it is based on in its name; `master` follows upstream
-and keeps the name `opis/json-schema`. A rebase onto a newer upstream
-version gets a new branch `polyspec-origin-<version>`, which roots then
-require as `dev-polyspec-origin-<version>`.
+## Branches and tags
+
+- `master` mirrors upstream and holds no commit of this fork.
+- `min-0-max/polyspec/2.6.0-1-g85d8523` is the line, the default branch:
+  upstream at `2.6.0-1-g85d8523` (the `git describe --tags` value of the
+  base) with the fixes and the fork's own files.
+- `min-0-max/fix/collect-checked-properties/2.6.0-1-g85d8523` holds the
+  fix alone on the same base, without the fork's files.
+- A release is a tag `v<upstream version>-p<n>` on the line. A newer
+  upstream base gets a new line `min-0-max/polyspec/<base>`, and roots
+  move to that line's tags.
